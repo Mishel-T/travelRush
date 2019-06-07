@@ -35,11 +35,35 @@
             <!--All buttons in same container div class="queries"-->
             <!--ids for each button: id="food", id="drink", id="weather", id="hotel" - query parameters assigned
             to each button id in the js code-->
-    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-        
+<div class="container">
+    <div class="row">
+        <div class="queries">
+            <div class="col-md-3">
+                <div id="weather">
+                    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">brightness_5</i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div id="food">
+                    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">free_breakfast</i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div id="drink">
+                    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">restaurant</i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div id="hotel">
+                    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">hotel</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <!--JavaScript at end of body for optimized loading-->
     <!--Adding all of our script tags-->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>

@@ -28,6 +28,17 @@
         display results data-->   
         <!--two separate columns - one for origin and one for destination-->
         <!--TRY to make each column collapsable to hide either destination or origin-->
+    <div id="results">
+      <div class="row">
+            <div class="col s6">
+                'Placeholder for results'
+            </div>
+
+            <div class="col s6">
+                'Placeholder for results2'
+            </div>
+      </div>
+    </div>
         
     <!-- Row 4: Button row To include: "food", "drink(including bars and coffee for now), weather, hotels -->
             <!--buttons should have pics that are instantly readable for what the user wants to find -->
@@ -35,28 +46,31 @@
             <!--All buttons in same container div class="queries"-->
             <!--ids for each button: id="food", id="drink", id="weather", id="hotel" - query parameters assigned
             to each button id in the js code-->
+
 <div class="container">
+<!-- main container for button row-->
     <div class="row">
+    <!-- designates class id for javascript -->
         <div class="queries">
-            <div class="col-md-3">
+            <div class="col s3">
                 <div id="weather">
                     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">brightness_5</i></a>
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col s3">
                 <div id="food">
                     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">free_breakfast</i></a>
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col s3">
                 <div id="drink">
                     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">restaurant</i></a>
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col s3">
                 <div id="hotel">
                     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">hotel</i></a>
                 </div>

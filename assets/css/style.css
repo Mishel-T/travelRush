@@ -1,3 +1,9 @@
 nav .brand-logo i {
     font-size: 75px;
 }
+
+img.responsive-img, video.responsive-video {
+    max-width: 45%;
+    margin-left: 10px;
+    margin-top: -25px;
+}

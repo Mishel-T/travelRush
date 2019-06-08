@@ -19,29 +19,25 @@
        <nav>
             <div class="nav-wrapper">
             <!-- custom logo added -->
-            <a href="#" class="brand-logo"><img class="responsive-img" src="assets/images/travelRush-logo.png"></a>
+            <a href="#" class="brand-logo"><img class="responsive-img" src="assets/images/travelRush-logo.png" style='max-width: 180px'></a>
               <h1 class="center-align">travelRush</h1>
             </div>
           </nav>
         
-           <!--Row 2: search inputs: Origin(input) and "Where are you going?" Destination(input) -->
+           <!--Row 2: search input: "Where are you going?" Destination(input) -->
         
-            <!--Origin inputs = airport id="origin-airport" or city,state id="origin-input"-->
-            <!--Destination inputs = Airport id="dest-airport" or state/city/zip id="dest-input"-->
+            <!--Destination inputs = id="dest-city" state, city -->
             <!--Submit id="user-input"-->
         
     <div class="container">
+      <div class="inner-container">
             <div class="row">
                 <form class="col s12">
                   <div class="row">
-                    <div class="input-field col s6">
-                      <input placeholder="Origin" id="origin-airport" type="text" class="validate">
-                      <label for="origin-airport"></label>
-                    </div>
-    
-                    <div class="input-field col s6">
-                      <input placeholder="Destination" id="dest-airport" type="text" class="validate">
-                      <label for="dest-airport"></label>
+                    <h6>Where are you going?</h6>
+                    <div class="input-field col s8">
+                      <input placeholder="City, State" id="dest-city" type="text" class="validate">
+                      <label for="dest-city"></label>
                     </div>
             </div>
         
@@ -62,15 +58,16 @@
                     </div>
                     <button type="submit" class="btn btn-primary" id="user-input">Submit</button>
             </div>  
-    
-    
-        <!--Row 3: Results Div - will be taking data from search queries to  APIs and displaying it here id="results"-->
+        </div>
+      </div>
+      </div>
+            <!--Row 3: Results Div - will be taking data from search queries to  APIs and displaying it here id="results"-->
             <!--use this area to push api results and dynamically create additional divs as necessary to 
             display results data-->   
             <!--two separate columns - one for origin and one for destination-->
             <!--TRY to make each column collapsable to hide either destination or origin-->
     
-    
+      <br>
         <div id="results">
           <div class="row">
                 <div class="col s6">

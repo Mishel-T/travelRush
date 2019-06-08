@@ -1,3 +1,21 @@
-nav .brand-logo i {
-    font-size: 75px;
-}
+body {
+    background-image: url("../images/heather-shevlin-city.jpg");
+   }
+   
+   .inner-container {
+       border-radius: 25px;
+       background-color: rgba(22, 19, 19, 0.849);
+       margin-top: 5px;
+       padding-left: 20px;
+       padding-right: 20px;
+   }
+   
+   img.responsive-img, video.responsive-video {
+       justify-content: left;
+       max-width: 40%;
+       margin-left: 10px;
+       padding-left: 20px;
+   
+   }input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
+       background-color: rgba(255, 255, 255, 0.849);
+   }

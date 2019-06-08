@@ -1,29 +1,35 @@
 //try ajax calls to see what object returns look like on each of the APIs we will be using
-// var searchTerms = ["Los Angeles, CA", "Seattle, WA"]
 
-// var APIKey = "b870cade31afedaa4963a0b60beeb5c2";
 
-// var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
-//       "q=London,us&mode=xml&appid=" + APIKey;
-//       console.log(queryURL)
+var APIKey = "b870cade31afedaa4963a0b60beeb5c2";
 
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-//     })
-//     .then(function(response) {
-//         console.log(response);
-//     });
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
+"q=Houston,us&mode=json&appid=" + APIKey;
+     console.log(queryURL)
+
+ $.ajax({
+     url: queryURL,
+     method: "GET"
+     })
+     .then(function(response) {
+         console.log(response);
+     });
 
 
 
 //yelp api ajax pull
+//need to add location vars 
+$("#search-btn").on("click", function(event) {
+    event.preventDefault();
+    console.log("button click working")
+var searchTerm = $("#search-btn").attr("value")
+console.log (searchTerm)
 var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
 
-var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotels&location=boston&limit=10";
+var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm + "&location=boston&limit=10";
 
 $.ajax({
-    url: myurl,
+    url: yelpURL,
     headers: {
         'Authorization': 'Bearer ' + yelpAPIKey,
     },
@@ -34,6 +40,7 @@ $.ajax({
     }
 }).then(function (response) {
     console.log(response);
+});
 
 
 //just messing around to see if I can succesfully pull the response data into the html successfully
@@ -68,18 +75,17 @@ var database = firebase.database();
 //on click event to capture and store values
 $("#user-input").on("click", function(event) {
     event.preventDefault();
-    console.log("on click event running")
+    console.log("Submit on click event running")
 
      //store values from form input
-     var origin = $("#origin-airport").val().trim();      
-     var destination = $("#dest-airport").val().trim();      
+     //add var for locationCoord
+     var destination = $("#dest-city").val().trim();      
      var departure = moment($("#depart-date").val().trim()).format("L");
      var arrival = moment($("#return-date").val().trim(),).format("L");    
-     console.log(origin, destination, departure, arrival); 
+     console.log(destination, departure, arrival); 
      
    // Create local "temporary" object for holding input data
    var searchInput = {
-       origin: origin,
        destination: destination,
        departDate: departure,
        returnDate: arrival,

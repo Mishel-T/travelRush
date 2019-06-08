@@ -79,63 +79,74 @@
             <!--two separate columns - one for origin and one for destination-->
             <!--TRY to make each column collapsable to hide either destination or origin-->
     
-      <br>
-        <div id="results">
-          <div class="row">
-                <div class="col s6">
-                <!-- Added collapsible element according to Materialize. This will require HTML AND Javascript elements to work -->
-                    <ul class="collapsible">
-                        'Placeholder for results1'
-                    </ul>
-                </div>
-                
-    
-                <div class="col s6">
-                    <ul class="collapsible">
-                        'Placeholder for results2'
-                    </ul>
-                </div>
-          </div>
-        </div>
-            
-        <!-- Row 4: Button row To include: "food", "drink(including bars and coffee for now), weather, hotels -->
-                <!--buttons should have pics that are instantly readable for what the user wants to find -->
-                <!--These buttons would run the search parameters with queries assigned to each for the api-->
-                <!--All buttons in same container div class="queries"-->
-                <!--ids for each button: id="food", id="drink", id="weather", id="hotel" - query parameters assigned
-                to each button id in the js code-->
-    
-    <!-- main container for button row-->
-        <div class="row">
-        <!-- designates class id for javascript -->
-            <div class="queries">
-                <div class="col s3">
-                    <div id="weather">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">brightness_5</i></a>
+            <div class="row">
+                <div class="col s3 m4">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="images/sample-1.jpg">
+                      <span class="card-title">Card Title</span>
+                      <a class="btn-floating halfway-fab waves-effect waves-light red" class="search-btn" value="weather"><i class="material-icons">brightness_5</i></a>
                     </div>
-                </div>
-    
-                <div class="col s3">
-                    <div id="food">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">free_breakfast</i></a>
+                    <div class="card-content">
+                      <p>I am a placeholder for weather.</p>
                     </div>
-                </div>
-    
-                <div class="col s3">
-                    <div id="drink">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">restaurant</i></a>
+                    <div class="card-action">
+                      <a href="#">This is a link</a>
                     </div>
+                  </div>
                 </div>
-    
-                <div class="col s3">
-                    <div id="hotel">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">hotel</i></a>
+          
+                  <div class="col s3 m4">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"  class="search-btn" value="restaurants"><i class="material-icons">restaurant</i></a>
+                      </div>
+                      <div class="card-content">
+                        <p>I am a placeholder for Restaurants.</p>
+                      </div>
+                      <div class="card-action">
+                        <a href="#">This is a link</a>
+                      </div>
                     </div>
-                </div>
+                  </div>
+          
+                  <div class="col s3 m4">
+                      <div class="card">
+                        <div class="card-image">
+                          <img src="images/sample-1.jpg">
+                          <span class="card-title">Card Title</span>
+                          <a class="btn-floating halfway-fab waves-effect waves-light red" class="search-btn" value="coffee"><i class="material-icons">free_breakfast</i></a>
+                        </div>
+                        <div class="card-content">
+                          <p>I am a placeholder for Coffee Shops.</p>
+                        </div>
+                        <div class="card-action">
+                          <a href="#">This is a link</a>
+                        </div>
+                      </div>
+                    </div>
+          
+          
+                    <div class="col s3 m4">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="images/sample-1.jpg">
+                            <span class="card-title">Card Title</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red" class="search-btn" value="hotels"><i class="material-icons">hotel</i></a>
+                          </div>
+                          <div class="card-content">
+                            <p>I am a placeholder for Hotels.</p>
+                          </div>
+                          <div class="card-action">
+                            <a href="#">This is a link</a>
+                          </div>
+                        </div>
+                      </div>
+          
             </div>
-        </div>
-    </div>
-    
+
         <!--JavaScript at end of body for optimized loading-->
         <!--Adding all of our script tags-->
         <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>

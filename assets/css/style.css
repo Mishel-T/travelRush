@@ -1,5 +1,12 @@
 body {
- background-image: url("../images/heather-shevlin-city.jpg");
+    background-image: url("../images/heather-shevlin-city.jpg");
+}
+
+nav .brand-logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 3rem;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 2.00px; 
 }
 
 .inner-container {
@@ -16,7 +23,8 @@ img.responsive-img, video.responsive-video {
     max-width: 40%;
     margin-left: 10px;
     padding-left: 20px;
+}
 
-}input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
+input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
     background-color: rgba(255, 255, 255, 0.849);
 }

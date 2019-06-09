@@ -1,6 +1,4 @@
-//try ajax calls to see what object returns look like on each of the APIs we will be using
-
-
+//OpenWeather API ajax call working, Dupe working on 
 var APIKey = "b870cade31afedaa4963a0b60beeb5c2";
 
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
@@ -17,20 +15,22 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
 
 
 
-//yelp api ajax pull
-//need to add location vars 
-$("#search-btn").on("click", function(event) {
+//yelp api ajax call working
+//need to add location vars once pulled from search input 
+//function for displaying additional response parameters after initial load
+$(".search-btn").on("click", function(event) {
     event.preventDefault();
     console.log("button click working")
-var searchTerm = $("#search-btn").attr("value")
-console.log (searchTerm)
-var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
+    var searchTerm = $(this).attr("value")
+    console.log (searchTerm)
 
-var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm + "&location=boston&limit=10";
+    var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
 
-$.ajax({
-    url: yelpURL,
-    headers: {
+    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm + "&location=boston&limit=10";
+
+    $.ajax({
+        url: yelpURL,
+        headers: {
         'Authorization': 'Bearer ' + yelpAPIKey,
     },
     method: 'GET',
@@ -40,6 +40,9 @@ $.ajax({
     }
 }).then(function (response) {
     console.log(response);
+
+//display response parameters to basic card in a table format
+
 });
 
 

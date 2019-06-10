@@ -4,6 +4,7 @@ body {
 
 nav .brand-logo {
     font-family: 'Anton', sans-serif;
+    font-style: italic;
     font-size: 3rem;
     -webkit-text-stroke-color: black;
     -webkit-text-stroke-width: 2.00px; 
@@ -28,3 +29,16 @@ img.responsive-img, video.responsive-video {
 input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
     background-color: rgba(255, 255, 255, 0.849);
 }
+
+/* Media query override for logo element */
+  @media only screen and (max-width: 993px) and (min-width: 770px) {
+    nav .brand-logo {
+        left: 8%;
+    }
+  }
+
+@media only screen and (max-width: 769px) {
+    img.responsive-img {
+      display: none;
+    }
+  }

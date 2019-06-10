@@ -1,81 +1,37 @@
+//on submit 
+    //store values in firebase
+    //run api queries for each of the search terms
+    //take index of 0 results for each term and push to existing card
+    //store reamining results,index 1-10, in objects to pull later
+//on button click for each card 
+    //clear card div
+    //create new basic div for table of results
+    //run api pull again?? have to figure out how to store data from original api search - if successfully stored
+    //display those results objects in each card 
+    //pull index 1-3 (or more as necessary) of each search term result and display in table format
+    //make each additional search result clickable to be taken to that results url 
+
+
+
 //OpenWeather API ajax call working, Dupe working on 
-var APIKey = "b870cade31afedaa4963a0b60beeb5c2";
+//var APIKey = "b870cade31afedaa4963a0b60beeb5c2";
 
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
-"q=Houston,us&mode=json&appid=" + APIKey;
-     console.log(queryURL)
+//var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
+//"q=Houston,us&mode=json&appid=" + APIKey;
+//     console.log(queryURL)
 
- $.ajax({
-     url: queryURL,
-     method: "GET"
-     })
-     .then(function(response) {
-         console.log(response);
-     });
+ //$.ajax({
+   //  url: queryURL,
+   //  method: "GET"
+   //  })
+   //  .then(function(response) {
+   //      console.log(response);
+   //  });
 
 
 
-//yelp api ajax call working
 //need to add location vars once pulled from search input 
-//function for displaying additional response parameters after initial load
-$(".search-btn").on("click", function(event) {
-    event.preventDefault();
-    console.log("button click working")
-    var searchTerm = $(this).attr("value")
-    console.log (searchTerm)
-
-    var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
-
-    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm + "&location=boston&limit=10";
-
-    $.ajax({
-        url: yelpURL,
-        headers: {
-        'Authorization': 'Bearer ' + yelpAPIKey,
-    },
-    method: 'GET',
-    dataType: 'json',
-    success: function (data) {
-        console.log('success: ' + data);
-    }
-}).then(function (response) {
-    console.log(response);
-
-//display response parameters to basic card in a table format
-
-});
-
-
-//just messing around to see if I can succesfully pull the response data into the html successfully
-//will have to dynamically create rows with about 10 search results to display the data we want
-//each row will have to be a clickable element to take you to that hote's site, or that restaurant on google maps....
-//var newDiv = $("<div>");
-//var responseImg = $("<img>");
-
-//responseImg.attr({
-    //"src": response.businesses[0].image_url,
-    //"alias": response.businesses[0].alias,
-
-//})
-
-//newDiv.append(responseImg);
-
-//$(".collapsible").append(newDiv)
-});
-
-//link to firebase
-var config = { 
-    apiKey: "AIzaSyAEHiL6iIGeMKpa6X0dKc1F8fv0qXlgks0",
-    authDomain: "fir-click-counter-7cdb9.firebaseapp.com",
-    databaseURL: "https://travelrush-b1c4f.firebaseio.com/",
-    storageBucket: "gs://travelrush-b1c4f.appspot.com"
-  };
-  
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-//on click event to capture and store values
+//on click event to capture and store values and run ajax queries
 $("#user-input").on("click", function(event) {
     event.preventDefault();
     console.log("Submit on click event running")
@@ -97,7 +53,92 @@ $("#user-input").on("click", function(event) {
 
  //upload object to the database
    database.ref().push(searchInput);
+
+  //pull object and display to History
+   
+//yelp ajax call for each search term 
+var searchTerm = ["hotels", "restaurants","coffee"];
+
+   for (var i=0; i<searchTerm.length; i++) {
+       console.log(searchTerm[i])
+   var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
+
+   var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm[i] + "&location=boston&limit=10";
+
+   $.ajax({
+       url: yelpURL,
+       headers: {
+       'Authorization': 'Bearer ' + yelpAPIKey,
+       },
+   method: 'GET',
+   dataType: 'json',
+   success: function (data) {
+       console.log('success: ' + data);
+   }
+   }).then(function (response) {
+       console.log(response);
+    //store 0 index search results parameters in variables to then push to each card
+    //if else functions to state if index of 0 1 or 2 post to specific places
+    if (searchTerm[i]==="hotels") {
+
+        var alias = response.businesses[0].alias
+        console.log(alias)
+    }
+
+   });
+//push 0 index of each result to card - to do that, store all parameters in variables after ajax call
+}
 })
+
+  
+    
+
+//function for displaying additional response parameters after initial load
+function displayResults() {
+    event.preventDefault();
+    console.log("button click working")
+    var searchTerm = $(this).attr("value")
+    console.log (searchTerm);
+   
+
+//display response parameters to basic card in a table format
+
+};
+
+
+//just messing around to see if I can succesfully pull the response data into the html successfully
+//will have to dynamically create rows with about 10 search results to display the data we want
+//each row will have to be a clickable element to take you to that hote's site, or that restaurant on google maps....
+//var newDiv = $("<div>");
+//var responseImg = $("<img>");
+
+//responseImg.attr({
+    //"src": response.businesses[0].image_url,
+    //"alias": response.businesses[0].alias,
+
+//})
+
+//newDiv.append(responseImg);
+
+//$(".collapsible").append(newDiv)
+
+
+//link to firebase
+var config = { 
+    apiKey: "AIzaSyAEHiL6iIGeMKpa6X0dKc1F8fv0qXlgks0",
+    authDomain: "fir-click-counter-7cdb9.firebaseapp.com",
+    databaseURL: "https://travelrush-b1c4f.firebaseio.com/",
+    storageBucket: "gs://travelrush-b1c4f.appspot.com"
+  };
+  
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+
+
+$(document).on("click", ".search-btn", displayResults);
+
 
 //create on child added function to take snapshot of database objects and display to search History
 //Take those search parameters and allow the user to click to add them back to the input fields

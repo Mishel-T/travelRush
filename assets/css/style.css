@@ -10,6 +10,19 @@ nav .brand-logo {
     -webkit-text-stroke-width: 2.00px; 
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(22, 19, 19, 0.685);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgba(22, 19, 19, 0.685);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(22, 19, 19, 0.685);
+}
+
 .inner-container {
     border-radius: 25px;
     background-color: rgba(22, 19, 19, 0.849);

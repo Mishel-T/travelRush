@@ -1,5 +1,9 @@
 body {
-    background-image: url("../images/heather-shevlin-city.jpg");
+  background-image: url("../images/heather-shevlin-city.jpg");
+}
+
+nav {
+  background-color: rgb(125, 141, 191);
 }
 
 nav .brand-logo {
@@ -8,6 +12,10 @@ nav .brand-logo {
     font-size: 3rem;
     -webkit-text-stroke-color: black;
     -webkit-text-stroke-width: 2.00px; 
+}
+
+.red {
+  background-color: rgb(51, 51, 153) !important;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

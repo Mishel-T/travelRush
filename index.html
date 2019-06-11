@@ -59,14 +59,15 @@
                     <div class="input-field col s6">
                       <h6>When are you leaving?</h6>
                       <!--fixing ids for depart and return date fields-->
+                      <!-- Dupe: matched up for attributes with ids-->
                         <input placeholder="Depart Date" id="depart-date" type="date" class="validate">
-                      <label for="origin-airport"></label>
+                      <label for="depart-date"></label>
                     </div>
     
                     <div class="input-field col s6">
                       <h6>When are you returning?</h6>
                         <input placeholder="Return Date" id="return-date" type="date" class="validate">
-                      <label for="dest-airport"></label>
+                      <label for="return-date"></label>
                     </div>
                     <button type="submit" class="btn btn-primary" id="user-input">Submit</button>
             </div>  
@@ -87,7 +88,8 @@
                       <span class="card-title">Card Title</span>
                       <a class="btn-floating halfway-fab waves-effect waves-light red" class="search-btn" value="weather"><i class="material-icons">brightness_5</i></a>
                     </div>
-                    <div class="card-content">
+                    <!-- Dupe: added id name for the weather div.-->
+                    <div class="card-content" id="result-weather">
                       <p>I am a placeholder for weather.</p>
                     </div>
                     <div class="card-action">
@@ -103,7 +105,7 @@
                         <span class="card-title">Card Title</span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red"  class="search-btn" value="restaurants"><i class="material-icons">restaurant</i></a>
                       </div>
-                      <div class="card-content">
+                      <div class="card-content" id="result-rest">
                         <p>I am a placeholder for Restaurants.</p>
                       </div>
                       <div class="card-action">

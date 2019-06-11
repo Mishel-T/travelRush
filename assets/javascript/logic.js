@@ -78,12 +78,15 @@ var searchTerm = ["hotels", "restaurants","coffee"];
    }).then(function (response) {
        console.log(response);
     //store 0 index search results parameters in variables to then push to each card
-    //if else functions to state if index of 0 1 or 2 post to specific places
-    if (searchTerm[i]==="hotels") {
-
-        var alias = response.businesses[0].alias
-        console.log(alias)
-    }
+var businessInfo = {
+    "name":response.businesses[0].name, 
+    "image": response.businesses[0].image_url,
+    "url": response.businesses[0].url,
+    "price": response.businesses[0].price,
+    "rating":response.businesses[0].rating, 
+    "title": response.businesses[0].categories[0].title,
+}
+console.log(businessInfo)
 
    });
 //push 0 index of each result to card - to do that, store all parameters in variables after ajax call

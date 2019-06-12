@@ -42,6 +42,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+
 //function to run api call for the term parameter passed through on the on click even of user-input
 
 function callAPI(term) {
@@ -83,9 +84,15 @@ $("#user-input").on("click", function (event) {
     console.log(searchInput)
 
     //upload object to the database
-    database.ref().push(searchInput);
-
     //pull object and display to History - still to be coded
+    database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+        console.log(childSnapshot.val());
+     
+     });
+  
+
+    
 
     //creating variables to store term for each call that will be run through the callAPI function
     var call1 = callAPI('hotels')
@@ -111,17 +118,9 @@ $("#user-input").on("click", function (event) {
              
               $("#hotel-name").text(hotelsInfo.name)
               $("#hotel-img").attr("src", hotelsInfo.image)
-              $("#hotel-title").text(hotelsInfo.title)
-        
-              
+              $("#hotel-title").text(hotelsInfo.title)  
               $("#hotel-rating").text("Rating: " + hotelsInfo.rating)
-             
-        
-              var hotelPrice = $("<p>")
-              hotelPrice.attr("id", "hotel-price")
               $("#hotel-price").text(hotelsInfo.price)
-              $("#hotel-info").append(hotelPrice)
-        
               $("#hotel-url").attr("href", hotelsInfo.url)
 
     var restaurantsInfo = {
@@ -136,16 +135,8 @@ $("#user-input").on("click", function (event) {
               $("#restaurant-name").text(restaurantsInfo.name)
               $("#restaurant-img").attr("src", restaurantsInfo.image)
               $("#restaurant-title").text(restaurantsInfo.title)
-        
-              
               $("#restaurant-rating").text("Rating: " + restaurantsInfo.rating)
-             
-        
-              var restaurantPrice = $("<p>")
-              restaurantPrice.attr("id", "restaurant-price")
               $("#restaurant-price").text(restaurantsInfo.price)
-              $("#restaurant-info").append(restaurantPrice)
-        
               $("#restaurant-url").attr("href", restaurantsInfo.url)
 
     var coffeeInfo = {
@@ -162,16 +153,8 @@ $("#user-input").on("click", function (event) {
                 $("#coffee-name").text(coffeeInfo.name)
                 $("#coffee-img").attr("src", coffeeInfo.image)
                 $("#coffee-title").text(coffeeInfo.title)
-          
-                
                 $("#coffee-rating").text("Rating: " + coffeeInfo.rating)
-               
-          
-                var coffeePrice = $("<p>")
-                coffeePrice.attr("id", "coffee-price")
                 $("#coffee-price").text(coffeeInfo.price)
-                $("#coffee-info").append(coffeePrice)
-          
                 $("#coffee-url").attr("href", coffeeInfo.url)
     });
 })

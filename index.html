@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Varela+Round&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,11 +27,10 @@
       </ul>
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo"><img class="responsive-img" src="assets/images/travelRush-logo.png" style='max-width: 180px'></a>
-          <a href="#!" class="brand-logo center">travelRush</a>
+            <a href="#" class="brand-logo"><img class="responsive-img" src="assets/images/travelRush-logo.png" style='max-width: 150px'></a>
+            <a href="#!" class="brand-logo center">travelRush</a>
           <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">About</a></li>
-            <li><a href="badges.html">Resources</a></li>
             <!-- Dropdown Trigger -->
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">History<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
@@ -45,12 +45,17 @@
     <div class="container">
       <div class="inner-container"> <!-- Backdrop: Photo by Heather Shevlin on Unsplash-->
             <div class="row">
-                <form class="col s12">
-                  <div class="row">
+                
+                    <form class="col s6">
                     <h6>Where are you going?</h6>
-                    <div class="input-field col s8">
-                      <input placeholder="City, State" id="dest-city" type="text" class="validate">
-                      <label for="dest-city"></label>
+                    <div class="input-field">
+                        <input placeholder="City, State (Full spelling, no initials)" id="dest-city" type="text" class="validate">
+                        <label for="dest-city"></label> 
+                      </div>
+  
+        <!-- Div and span id here for list of airport suggestions for the form-->
+                      <div class="col s6">
+                        <span id="airport-suggest"></span>
                     </div>
             </div>
         
@@ -58,7 +63,8 @@
                 <form class="col s12">
                   <div class="row">
                     <div class="input-field col s6">
-                      <h6>When are you leaving?</h6>
+                        <h6 title="Note: Please limit travel time to next 5 days.">When are you leaving? <a href="#!">*</a></h6>
+
                       <!--fixing ids for depart and return date fields-->
                         <input placeholder="Depart Date" id="depart-date" type="date" class="validate">
                       <label for="origin-airport"></label>
@@ -69,81 +75,80 @@
                         <input placeholder="Return Date" id="return-date" type="date" class="validate">
                       <label for="dest-airport"></label>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="user-input">Submit</button>
-            </div>  
+                    <div class="col s3">
+                        <button type="submit" class="btn btn-primary" id="user-input">Submit</button></div>            </div>  
         </div>
-      </div>
       </div>
             <!--Row 3: Results Div - will be taking data from search queries to  APIs and displaying it here id="results"-->
             <!--use this area to push api results and dynamically create additional divs as necessary to 
             display results data-->   
-            <!--two separate columns - one for origin and one for destination-->
-            <!--TRY to make each column collapsable to hide either destination or origin-->
     
             <div class="row">
-              <div class="col s6 m6">
+
+                <div class="col s6">
+
                   <div class="card">
                     <div class="card-image">
-                      <img src="assets/images/sample-1.jpg">
+                      <img id="weather-img">
                       <span class="card-title">Card Title</span>
                       <a class="btn-floating halfway-fab waves-effect waves-light red search-btn" value="weather"><i class="material-icons">brightness_5</i></a>
                     </div>
                     <div class="card-content">
-                      <p>I am a placeholder for weather.</p>
+                      <p>Weather</p>
                     </div>
                     <div class="card-action">
-                      <a href="#">This is a link</a>
+                      <a href="#"></a>
                     </div>
                   </div>
                 </div>
           
-                <div class="col s6 m6">
+                <div class="col s6">
                     <div class="card">
                       <div class="card-image">
-                        <img src="assets/images/sample-1.jpg">
-                        <span class="card-title">Card Title</span>
+                        <img id="restaurant-img">
+                        <span class="card-title" id="restaurant-name">Card Title</span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red search-btn" value="restaurants"><i class="material-icons">restaurant</i></a>
                       </div>
-                      <div class="card-content">
-                        <p>I am a placeholder for Restaurants.</p>
+                      <div class="card-content" id="restaurant-info">
+                        <p id="restaurant-title">Restaurants</p>
                       </div>
                       <div class="card-action">
-                        <a href="#">This is a link</a>
+                        <a href="#" id="restaurant-url">Learn More</a>
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
           
-                  <div class="col s6 m6">
-                      <div class="card">
+                      <div class="col s6">
+                          <div class="card">
                         <div class="card-image">
-                          <img src="assets/images/sample-1.jpg">
-                          <span class="card-title">Card Title</span>
+                          <img id="coffee-img">
+                          <span class="card-title" id="coffee-name">Card Title</span>
                           <a class="btn-floating halfway-fab waves-effect waves-light red search-btn" value="coffee"><i class="material-icons">free_breakfast</i></a>
                         </div>
-                        <div class="card-content">
-                          <p>I am a placeholder for Coffee Shops.</p>
+                        <div class="card-content" id ="coffee-info">
+                          <p id="coffee-title">Coffee Shops</p>
                         </div>
                         <div class="card-action">
-                          <a href="#">This is a link</a>
+                          <a href="#" id="coffee-url" target="_blank">Learn More</a>
                         </div>
                       </div>
                     </div>
           
           
-                    <div class="col s6 m6">
+                    <div class="col s6">
                         <div class="card">
                           <div class="card-image">
-                            <img src="assets/images/sample-1.jpg">
-                            <span class="card-title">Card Title</span>
+                            <img id="hotel-img">
+                            <span class="card-title" id="hotel-name">Card Title</span>
                             <a class="btn-floating halfway-fab waves-effect waves-light red search-btn" value="hotels"><i class="material-icons">hotel</i></a>
                           </div>
-                          <div class="card-content">
-                            <p>I am a placeholder for Hotels.</p>
+                          <div class="card-content" id="hotel-info">
+                            <p id="hotel-title">Hotels</p>
                           </div>
                           <div class="card-action">
-                            <a href="#">This is a link</a>
+                            <a href="#" id="hotel-url" target="_blank">Learn More</a>
                           </div>
                         </div>
                       </div>

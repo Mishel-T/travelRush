@@ -21,4 +21,16 @@ body {
        background-color: rgba(255, 255, 255, 0.849);
    }
    
+   table {
+       font-size: small;
+   }
+
+   td{
+       text-align: center;
+       /*padding: 3px;*/
+       
+   }
+   th{
+       text-align: center;
+   }
 

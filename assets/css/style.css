@@ -6,6 +6,13 @@ nav {
   background-color: rgb(125, 141, 191);
 }
 
+.card .card-image .card-title {
+  font-size: 2em;
+  font-weight: bold;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1.5px; 
+}
+
 nav .brand-logo {
     font-family: 'Anton', sans-serif;
     font-style: italic;

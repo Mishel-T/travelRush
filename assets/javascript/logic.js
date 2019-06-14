@@ -144,11 +144,6 @@ console.log("program is running");
     }).then(function(response) {
       //response from AirportFinder api.
       console.log(response);
-      //console.log(response[0].name + " (" + response[0].code + ")" );
-      //dynamically create a div to hold the airport options
-      //newAirportOpt = $("<option>"); //maybe use select here!
-      //newAirportOpt.text("Please choose your destination airport");
-      //loop through all the airport options
       var newOpt;
 
       for (var i = 0; i < response.length; i++) {
@@ -174,16 +169,7 @@ console.log("program is running");
     })
   })
 
-  //click event for when the user chooses an airport
-  /*$(document).on("click", "select option", function(event) {
-    console.log("User just chose an aiport; here is the event handler....");
-    //update coordinates for the chosen airport.
-    //coordLoc.lat = $(this).attr("data-lat");
-    //coordLoc.long =  $(this).attr("data-long");
-    console.log("Airport user selected is " + $(this).attr("value"));
-    console.log("Coordinates for the airport: " + "Latitude = " + coordLoc.lat + " Longitude = " + coordLoc.long);
-
-  })*/
+  
   
   //change event retrieves and updates the coordinates for the selected airport.
   $("#airport-list").change(function(){

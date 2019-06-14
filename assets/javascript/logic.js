@@ -35,13 +35,16 @@ var destCity = "";
 var departDate = "";
 var destAirport = "";
 var queryState = "";
+var hasChosenAirport= false;  //tracks whether user has chosen an airport.
+//var submitCardButtons = false -------not sure if I need this.
 var convDateDay;
 var convDateNight;
 
 //processes and returns formatted user's travel date.
 function processUserDate(tDate, targetTime) {
     //reference to the travel date
-    var dateTime = moment(tDate + " 12:00:00");
+    //var dateTime = moment(tDate + " 12:00:00");
+    var dateTime = moment(tDate + " " + targetTime);
     var tDateTime = dateTime.format("YYYY-MM-DD HH:mm:ss");
     console.log(tDateTime);
     console.log("Data type of the target time is " + typeof(tDateTime));
@@ -151,6 +154,7 @@ function processUserDate(tDate, targetTime) {
       }
       //separate call for dynamically generated select elements--- Materialize docs
       $('#airport-list').formSelect();
+      //show input form when user clicks on airport
       $(".select-wrapper").show()
 
     })
@@ -160,8 +164,10 @@ function processUserDate(tDate, targetTime) {
 //change event retrieves and updates the coordinates for the selected airport.
 $("#airport-list").change(function(){
     console.log("I made it to the airport handler");
-    console.log($(this).children(":selected").html());
+    console.log("This option was selected: " + $(this).children(":selected").html());
     var targetOption = $(this).children(":selected");
+    //user has selected an airport, so update flag for whether user selected an airport
+    hasChosenAirport = true;
     //update coordinates and airport city for the chosen airport 
     coordLoc.lat = targetOption.attr("data-lat");
     coordLoc.long =  targetOption.attr("data-long");
@@ -194,14 +200,17 @@ function callAPI(term) {
 //on click event to capture and store values and run ajax queries
 $("#user-input").on("click", function (event) {
     event.preventDefault();
+    
+    
+    if (($("#dest-city").val().trim().length === 0)  || ($("#depart-date").val().trim().length === 0) || hasChosenAirport === false) {
+      console.log("exiting the click event to prevent user from submitting incorrect form.");
+      return;
+    }
     // Add loading icon
     $("#all").hide()
     $('.progress').show();
     
-    
-
-    console.log("Submit on click event running")
-
+    console.log("Submit on click event running");
     //store values from form input
     //add var for locationCoord
     var coord = coordLoc;
@@ -387,7 +396,7 @@ $("#user-input").on("click", function (event) {
                  $(newDiv).append(newLine)
              }
          }
- 
+      
  
  
  
@@ -399,8 +408,10 @@ $("#user-input").on("click", function (event) {
   
     //remove text and elements inside weather result div.
     $("#weather-results").empty();
-    //create title for the weather forecast
-    $("#weather-results").append("<p>" + destAirport + "," + queryState + " Weather On Travel Date" + "</p><br>");
+    //create title and image for the weather forecast
+    //$("#weather-results").append("<p>" + destAirport + "," + queryState + " Weather On Travel Date" + "</p><br>");
+    $("#weather-img").attr("src", "./assets/images/tim-gouw-208299-unsplash.jpg");
+    $("#weather-name").text(destAirport + "," + queryState + " Weather On Travel Date");
     //dynamically create layout of the table.
     createWeatherTable();
     departDate = $("#depart-date").val();
@@ -443,7 +454,10 @@ $("#user-input").on("click", function (event) {
         var indicesWeather = [];
         for (var i = 0; i < listWeather.length; i++) {
             console.log(listWeather[i].dt_txt);
-            if (listWeather[i].dt_txt === convDateDay ||listWeather[i].dt_txt === convDateNight) {
+            console.log("The time in API is : " + listWeather[i].dt_txt);
+            console.log("The target day time is: " + convDateDay);
+            console.log("The target night time is: " + convDateNight);
+            if (listWeather[i].dt_txt === convDateDay || listWeather[i].dt_txt === convDateNight) {
                 console.log("found it!");
                 indicesWeather.push(i);
                 if (indicesWeather.length === 2) {
@@ -483,14 +497,18 @@ $("#user-input").on("click", function (event) {
         }
 
     })
-}) // end of function 
+
+ 
+ }) // end of function 
 
 //click event to display 5 day weather forecast.
 $("#more-weather").on("click", function(event) {
     //remove text and elements inside weather result div.
     $("#weather-results").empty();
-    //create title for the weather forecast
-    $("#weather-results").append("<p>" + destAirport + "," + queryState + " 3-Day Weather forecast" + "</p><br>");
+    //create title and image for the weather forecast
+    //$("#weather-results").append("<p>" + destAirport + "," + queryState + " 3-Day Weather forecast" + "</p><br>");
+    $("#weather-img").attr("src", "./assets/images/tim-gouw-208299-unsplash.jpg");
+    $("#weather-name").text(destAirport + "," + queryState + " 3-Day Weather Forecast");
     //dynamically create layout of the table.
     createWeatherTable();
     //make ajax call to the weather api and then populate the table.

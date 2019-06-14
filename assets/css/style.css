@@ -1,0 +1,100 @@
+body {
+  background-image: url("../images/heather-shevlin-city.jpg");
+}
+
+nav {
+  background-color: rgb(125, 141, 191);
+}
+
+.card .card-image .card-title {
+  font-size: 2em;
+  font-weight: bold;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1.5px; 
+}
+
+nav .brand-logo {
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    font-size: 3rem;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 2.00px; 
+}
+
+.red {
+  background-color: rgb(51, 51, 153) !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(22, 19, 19, 0.685);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgba(22, 19, 19, 0.685);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(22, 19, 19, 0.685);
+}
+
+.inner-container {
+    border-radius: 25px;
+    background-color: rgba(22, 19, 19, 0.849);
+    color: white;
+    margin-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+img.responsive-img, video.responsive-video {
+    justify-content: left;
+    max-width: 40%;
+    margin-left: 10px;
+    padding-left: 20px;
+}
+
+input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
+    background-color: rgba(255, 255, 255, 0.849);
+}
+
+/* Media query override for logo element */
+  @media only screen and (max-width: 993px) and (min-width: 770px) {
+    nav .brand-logo {
+        left: 8%;
+    }
+  }
+
+@media only screen and (max-width: 769px) {
+    img.responsive-img {
+      display: none;
+    }
+  }
+
+/* css for loader*/
+.progress {
+  display:none;
+}
+
+
+table {
+  font-size: small;
+}
+
+td{
+  text-align: center;
+  /*padding: 3px;*/
+
+}
+th{
+  text-align: center;
+}
+p{
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.select-wrapper{
+  display:none;
+}

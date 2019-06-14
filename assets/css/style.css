@@ -70,3 +70,10 @@ input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
       display: none;
     }
   }
+
+/* css for loader*/
+.progress {
+  display:none;
+}
+
+

@@ -28,7 +28,9 @@
 //      console.log(response);
 //  });
 
-
+//$(document).ready(function(){
+   // $(".dropdown-trigger").dropdown();;
+  //});
 
 //link to firebase
 var config = {
@@ -49,7 +51,7 @@ function callAPI(term) {
     var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
 
     return $.ajax({
-        url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=boston&limit=10`,
+        url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=losAngeles&limit=10`,
         headers: {
             'Authorization': 'Bearer ' + yelpAPIKey,
         },
@@ -65,6 +67,11 @@ function callAPI(term) {
 //on click event to capture and store values and run ajax queries
 $("#user-input").on("click", function (event) {
     // Add loading icon
+    $("#all").hide()
+    $('.progress').show();
+    
+
+
     event.preventDefault();
     console.log("Submit on click event running")
 
@@ -84,11 +91,19 @@ $("#user-input").on("click", function (event) {
     console.log(searchInput)
 
     //upload object to the database
+    database.ref().push(searchInput);
+
     //pull object and display to History - still to be coded
     database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
         console.log(childSnapshot.val());
      
+        var destination = childSnapshot.val().destination;
+        var departure = childSnapshot.val().departDate;
+        var arrival = childSnapshot.val().returnDate
+     
+     
+        $("#dropdown1 > ul").append("<ul><li>" + destination + "</li></ul>");
      });
   
 
@@ -101,6 +116,9 @@ $("#user-input").on("click", function (event) {
 
     $.when(call1, call2, call3).done(function (v1, v2, v3) {
         // Remove loading thing
+        $('.progress').hide();
+        $("#all").show()
+
         console.log('v1', v1);
         console.log('v2', v2);
         console.log('v3', v3);
@@ -157,96 +175,109 @@ $("#user-input").on("click", function (event) {
                 $("#coffee-price").text(coffeeInfo.price)
                 $("#coffee-url").attr("href", coffeeInfo.url)
     });
+
+    $(".search-btn").on("click", function displayResults() {
+        event.preventDefault();
+        console.log("button click working")
+        var searchTerm = $(this).attr("value")
+        console.log(searchTerm);
+        console.log(destination)
+
+        $.when(call1, call2, call3).done(function (y1, y2, y3) {
+            
+
+        if (searchTerm=="coffee") {
+            console.log("y3", y3)
+            //clear div in order to display new card
+            $("#coffee-card").html("")
+
+            //create new div to display new card
+            var newDiv= $("<div>");
+            newDiv.addClass("collection");
+
+            //append new div to original card place holder
+            $("#coffee-card").append(newDiv)
+            
+            for (i=1; i<y3[0].businesses.length; i++) {
+                
+                 //create var to store distance converted to miles
+                var getMiles =  Math.round ((y3[0].businesses[i].distance*0.000621371192)*10)/10;
+                console.log(getMiles)
+                //create new row with remaining results info to then append to new card div
+                var newLine = $("<a>")
+                newLine.addClass("collection-item")
+                $(newLine).attr("href", y3[0].businesses[i].url)
+                $(newLine).attr("target", "_blank")
+                newLine.text(y3[0].businesses[i].name + " | " + "Price: " + y3[0].businesses[i].price + " | " + getMiles + " miles away")
+                $(newDiv).append(newLine)
+            }
+
+        } else if (searchTerm=="hotels") {
+            $("#hotels-card").html("")
+
+            //create new div to display new card
+            var newDiv= $("<div>");
+            newDiv.addClass("collection");
+
+            //append new div to original card place holder
+            $("#hotels-card").append(newDiv)
+            
+            for (i=1; i<y1[0].businesses.length; i++) {
+                 //create var to store distance converted to miles
+                 var getMiles =  Math.round ((y1[0].businesses[i].distance*0.000621371192)*10)/10;
+                 console.log(getMiles)
+
+                //create new row with remaining results info to then append to new card div
+                var newLine = $("<a>")
+                newLine.addClass("collection-item")
+                $(newLine).attr("href", y1[0].businesses[i].url)
+                $(newLine).attr("target", "_blank")
+                newLine.text(y1[0].businesses[i].name + " | " + "Price: " + y1[0].businesses[i].price + " | " + getMiles + " miles away")
+                $(newDiv).append(newLine)
+            }
+
+        } else if (searchTerm=="restaurants") {
+            $("#restaurants-card").html("")
+
+            //create new div to display new card
+            var newDiv= $("<div>");
+            newDiv.addClass("collection");
+
+            //append new div to original card place holder
+            $("#restaurants-card").append(newDiv)
+            
+            for (i=1; i<y2[0].businesses.length; i++) {
+                //create var to store distance converted to miles
+                var getMiles =  Math.round ((y2[0].businesses[i].distance*0.000621371192)*10)/10;
+                console.log(getMiles)
+
+               //create new row with remaining results info to then append to new card div 
+                var newLine = $("<a>")
+                newLine.addClass("collection-item")
+                $(newLine).attr("href", y2[0].businesses[i].url)
+                $(newLine).attr("target", "_blank")
+                newLine.text(y2[0].businesses[i].name + " | " + "Price: " + y2[0].businesses[i].price + " | " + getMiles + " miles away")
+                $(newDiv).append(newLine)
+            }
+        }
+
+
+
+
+        });
+    });
+    
+    
 })
-    // for (var i = 0; i < searchTerm.length; i++) {
-    //     console.log(searchTerm[i])
-
-    //     var currentTerm = searchsses[0].url,
-        //    price: response.businTerm[i];
-
-
-    //     var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
-
-    //     var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm[i] + "&location=boston&limit=10";
-
-    //     //yelp ajax call for each search term 
-    //     $.ajax({
-    //         url: yelpURL,
-    //         headers: {
-    //             'Authorization': 'Bearer ' + yelpAPIKey,
-    //         },
-    //         method: 'GET',
-    //         dataType: 'json',
-    //         success: function (data) {
-    //             console.log('success: ' + data);
-    //         }
-    //     }).then(function (response) {
-    //         console.log(response);
-
-    //         //store 0 index search results parameters in variables to then push to each card
-    //         var businessInfo = {
-    //             name: response.businesses[0].name,
-    //             image: response.businesses[0].image_url,
-    //             url: response.businesses[0].url,
-    //             price: response.businesses[0].price,
-    //             rating: response.businesses[0].rating,
-    //             title: response.businesses[0].categories[0].title,
-    //         }
-    //         console.log(businessInfo)
-
-    //         console.log(currentTerm)
-    //         //take the search term response and display info to card - currently only working for coffee, if I run this outside of the for loop,
-    //         //it can't find businessInfo object
-    //         if (currentTerm === "coffee") {
-    //             console.log("if statement working")
-
-    //             $("#coffee-name").text(businessInfo.name)
-    //             $("#coffee-img").attr("src", businessInfo.image)
-    //             $("#coffee-title").text(businessInfo.title)
-
-    //             var coffeeRating = $("<p>")
-    //             coffeeRating.attr("id", "coffee-rating")
-    //             $("#coffee-rating").text("Rating: " + businessInfo.rating)
-    //             $("#coffee-info").append(coffeeRating)
-
-    //             var coffeePrice = $("<p>")
-    //             coffeePrice.attr("id", "coffee-price")
-    //             $("#coffee-price").text(businessInfo.price)
-    //             $("#coffee-info").append(coffeePrice)
-
-    //             $("#coffee-url").attr("href", businessInfo.url)
-
-    //         }
-
-
-
-    //     });
-
-
-
-
-    //     //push 0 index of each result to card - to do that, store all parameters in variables after ajax call
-    // }
 
 
 
 
 
-//function for displaying additional response parameters after initial load
-function displayResults() {
-    event.preventDefault();
-    console.log("button click working")
-    var searchTerm = $(this).attr("value")
-    console.log(searchTerm);
-
-
-    //display response parameters to basic card in a table format
-
-};
 
 
 
-$(document).on("click", ".search-btn", displayResults);
+//$(document).on("click", ".search-btn", displayResults);
 
 
 //create on child added function to take snapshot of database objects and display to search History

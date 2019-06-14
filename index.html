@@ -51,6 +51,15 @@
                     <div class="input-field">
                         <input placeholder="City, State" id="dest-city" type="text" class="validate">
                         <label for="dest-city"></label> 
+                        
+                          <!--<button type="submit" class="btn btn-primary blue" id="user-city">Airports</button>-->
+                         <button class="btn waves-effect waves-light blue" id="user-city" type="submit" name="action">Airports
+                          <i class="material-icons right">send</i>
+                        </button>
+                      <select id="airport-list">
+                          <option value="" disabled selected>Choose your destination airport</option>
+                      </select>
+                          <label></label>
                       </div>
   
         <!-- Div and span id here for list of airport suggestions for the form-->
@@ -67,21 +76,23 @@
 
                       <!--fixing ids for depart and return date fields-->
                         <input placeholder="Depart Date" id="depart-date" type="date" class="validate">
-                      <label for="origin-airport"></label>
+                      <label for="depart-date"></label>
                     </div>
     
                     <div class="input-field col s6">
                       <h6>When are you returning?</h6>
                         <input placeholder="Return Date" id="return-date" type="date" class="validate">
-                      <label for="dest-airport"></label>
+                      <label for="return-date"></label>
                     </div>
                     <div class="col s3">
-                        <button type="submit" class="btn btn-primary" id="user-input">Submit</button></div>            </div>  
-                        <!--Adding div for loader to see if I can get it to work-->
+                      <button class="btn waves-effect waves-light btn-large" id="user-input" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                      </button>  </div>                     
+                      <!--Adding div for loader-->
                         <div class="progress">
                           <div class="indeterminate"></div>
                       </div>
-
+                    </div>
         </div>
       </div>
             <!--Row 3: Results Div - will be taking data from search queries to  APIs and displaying it here id="results"-->
@@ -92,13 +103,13 @@
 
                 <div class="col s6">
 
-                  <div class="card">
+                  <div class="card" >
                     <div class="card-image">
                       <img id="weather-img">
                       <span class="card-title"></span>
-                      <a class="btn-floating halfway-fab waves-effect waves-light red search-btn" value="weather"><i class="material-icons">brightness_5</i></a>
+                      <a class="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i class="material-icons">brightness_5</i></a>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content" id="weather-results">
                       <p>Weather</p>
                     </div>
                     <div class="card-action">
@@ -165,7 +176,7 @@
                       </div>
                     </div>
           
-            </div>
+            
       </div>
 
         <!--JavaScript at end of body for optimized loading-->

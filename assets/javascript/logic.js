@@ -67,6 +67,11 @@ function callAPI(term) {
 //on click event to capture and store values and run ajax queries
 $("#user-input").on("click", function (event) {
     // Add loading icon
+    $("#all").hide()
+    $('.progress').show();
+    
+
+
     event.preventDefault();
     console.log("Submit on click event running")
 
@@ -105,6 +110,9 @@ $("#user-input").on("click", function (event) {
 
     $.when(call1, call2, call3).done(function (v1, v2, v3) {
         // Remove loading thing
+        $('.progress').hide();
+        $("#all").show()
+
         console.log('v1', v1);
         console.log('v2', v2);
         console.log('v3', v3);

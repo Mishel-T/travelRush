@@ -33,4 +33,9 @@ body {
    th{
        text-align: center;
    }
+   p{
+       color: black;
+       font-weight: bold;
+       font-size: 16px;
+   }
 

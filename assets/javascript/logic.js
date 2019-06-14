@@ -55,6 +55,7 @@ console.log("program is running");
     return Math.round((temp - 273.15) * 1.80 + 32);
   }
   
+  /*
   function dispAirports(airportsList) {
     var indAirport = 0;
     for (var i = 0; i < airportsList.length; i++) {
@@ -63,7 +64,7 @@ console.log("program is running");
       newPar
     }
   
-  }
+  }*/
 
   //add weather data for current row 
   function addWeatherRow(day, imgI, desc, temp, wind, hum) {
@@ -95,18 +96,15 @@ console.log("program is running");
     head.append(rowHeader);
     tableWeather.append(head, body);
     $("#weather-results").append(tableWeather);
-
-
-
-
-
   }
-  //createWeatherTable();
-  //addWeatherRow("today", "Hot, clear clouds", "89F", "19mph", "40%");
+
+  
   //click event that displays airport options.
   $("#user-city").on("click", function(event) {
     console.log("inside event click to display airports");
     event.preventDefault();
+    //clear the previous airport list when user requests airport options.
+    $(".all-airports").remove();
     console.log($("#dest-city").val());
     destCity = $("#dest-city").val(); //assume user's destination is by city and state.
     //processing and extracting strings to use for queryParameters
@@ -151,13 +149,14 @@ console.log("program is running");
       //newAirportOpt = $("<option>"); //maybe use select here!
       //newAirportOpt.text("Please choose your destination airport");
       //loop through all the airport options
-        var newOpt;
+      var newOpt;
 
       for (var i = 0; i < response.length; i++) {
         //console.log("I am inside the for loop....");
 
         newOpt = $("<option>");
         newOpt.text(response[i].city + ", " + queryState  + " (" + response[i].name + "-" + response[i].code + ")");
+        newOpt.addClass("all-airports");
         newOpt.attr("value", response[i].name);
         newOpt.attr("data-city", response[i].city);
         newOpt.attr("data-lat", response[i].location.latitude);
@@ -204,6 +203,8 @@ console.log("program is running");
     event.preventDefault();
     //remove text and elements inside weather result div.
     $("#weather-results").empty();
+    //create title for the weather forecast
+    $("#weather-results").append("<p>" + destAirport + "," + queryState + " Weather On Travel Date" + "</p><br>");
     //dynamically create layout of the table.
     createWeatherTable();
     departDate = $("#depart-date").val();
@@ -220,7 +221,7 @@ console.log("program is running");
     //qphrase = destAiport;
     
     // Here we are building the URL we need to query the openweathermap API
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordLoc.lat + "&lon=" + coordLoc.long + "&mode=json&appid=" +  weatherAPIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordLoc.lat + "&lon=" + coordLoc.long + "&units=imperial&mode=json&appid=" +  weatherAPIKey;
     //var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + qPhrase + ",us&units=imperial&mode=json&appid=" +  weatherAPIKey;
     /*http://samples.openweathermap.org/data/2.5/find?q=London&units=imperial&appid=b6907d289e10d714a6e88b30761fae22
     add "&units=imperial" to get the units in F and mph.
@@ -258,6 +259,8 @@ console.log("program is running");
       
       //==========================================================
       //var monthDay = moment(convDepartDate).format("ddd MMM D");
+      //add title to temperature cards
+     
       for (var j = 0; j < indicesWeather.length; j++) {
         var urlIcon = "http://openweathermap.org/img/w/" + listWeather[indicesWeather[j]].weather[0].icon + ".png";
         //dynamically create reference for url image
@@ -291,6 +294,8 @@ console.log("program is running");
 $("#more-weather").on("click", function(event) {
     //remove text and elements inside weather result div.
     $("#weather-results").empty();
+    //create title for the weather forecast
+    $("#weather-results").append("<p>" + destAirport + "," + queryState + " 3-Day Weather forecast" + "</p><br>");
     //dynamically create layout of the table.
     createWeatherTable();
     //make ajax call to the weather api and then populate the table.

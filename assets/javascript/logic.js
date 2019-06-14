@@ -1,6 +1,21 @@
 $(document).ready(function(){
     $('select').formSelect();
+ 
+    var min = new Date();
+    min.setDate(min.getDate()+5)
+ 
+    var max = new Date();
+ 
+    $(document).ready(function(){
+        $('.datepicker').datepicker({
+            disableWeekends    : false,
+            minDate : new Date(),
+            maxDate : min
+        });
+      });
   });
+
+ 
 
 //link to firebase
 var config = {
@@ -74,6 +89,7 @@ function processUserDate(tDate, targetTime) {
   $("#user-city").on("click", function(event) {
     console.log("inside event click to display airports");
     event.preventDefault();
+    
     //clear the previous airport list when user requests airport options.
     $(".all-airports").remove();
     console.log($("#dest-city").val());
@@ -132,10 +148,11 @@ function processUserDate(tDate, targetTime) {
        //  $("#airport-list").text("");
         //$("#airport-list").append(newAirportOpt);
         $("#airport-list").append(newOpt);
-
       }
       //separate call for dynamically generated select elements--- Materialize docs
       $('#airport-list').formSelect();
+      $(".select-wrapper").show()
+
     })
     })
   })
@@ -158,7 +175,7 @@ function callAPI(term) {
     var yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx"
 
     return $.ajax({
-        url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=losAngeles&limit=10`,
+        url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&latitude=` + coordLoc.lat + "&longitude=" + coordLoc.long + "&limit=10",
         headers: {
             'Authorization': 'Bearer ' + yelpAPIKey,
         },
@@ -166,8 +183,11 @@ function callAPI(term) {
         dataType: 'json',
         success: function (data) {
             console.log('success: ' + data);
+            console.log("Yelp URL:" + this.url)
         }
+        
     })
+    
 }
 
 //need to add location vars once pulled from search input 

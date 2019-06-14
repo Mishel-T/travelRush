@@ -74,6 +74,7 @@ input[type=text]:not(.browser-default), input[type=date]:not(.browser-default) {
 /* css for loader*/
 .progress {
   display:none;
+  margin-top: 20px;
 }
 
 
@@ -98,3 +99,8 @@ p{
 .select-wrapper{
   display:none;
 }
+
+#weather-results {
+  padding: 5px;
+}
+

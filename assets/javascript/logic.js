@@ -28,9 +28,9 @@
 //      console.log(response);
 //  });
 
-$(document).ready(function(){
-    $(".dropdown-trigger").dropdown();;
-  });
+//$(document).ready(function(){
+   // $(".dropdown-trigger").dropdown();;
+  //});
 
 //link to firebase
 var config = {
@@ -98,6 +98,12 @@ $("#user-input").on("click", function (event) {
 
         console.log(childSnapshot.val());
      
+        var destination = childSnapshot.val().destination;
+        var departure = childSnapshot.val().departDate;
+        var arrival = childSnapshot.val().returnDate
+     
+     
+        $("#dropdown1 > ul").append("<ul><li>" + destination + "</li></ul>");
      });
   
 

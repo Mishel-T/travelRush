@@ -86,6 +86,8 @@ $("#user-input").on("click", function (event) {
     console.log(searchInput)
 
     //upload object to the database
+    database.ref().push(searchInput);
+
     //pull object and display to History - still to be coded
     database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 

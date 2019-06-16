@@ -49,14 +49,15 @@
                     <form class="col s6">
                     <h6>Where are you going?</h6>
                     <div class="input-field">
-                        <input placeholder="City, State" id="dest-city" type="text" class="validate">
+                        <input placeholder="City, State" id="dest-city" type="text" class="validate" required>
                         <label for="dest-city"></label> 
                         
+                  
                           <!--<button type="submit" class="btn btn-primary blue" id="user-city">Airports</button>-->
                          <button class="btn waves-effect waves-light blue" id="user-city" type="submit" name="action">Airports
                           <i class="material-icons right">send</i>
                         </button>
-                      <select id="airport-list">
+                      <select id="airport-list" required>
                           <option value="" disabled selected>Choose your destination airport</option>
                       </select>
                           <label></label>
@@ -103,7 +104,7 @@
 
                 <div class="col s6">
 
-                  <div class="card" >
+                  <div class="card">
                     <div class="card-image">
                       <img id="weather-img">
                       <span class="card-title" id="weather-name"></span>
@@ -187,7 +188,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
         <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
 
-    
+    <!--COMMENT SECTION (Has link to updated portfolio with Train Scheduler app)
+        <a href= "https://mosfad.github.io/Bootstrap-Portfolio/">Updated Portfolio</a>
+    -->
     </body>
     
     </html>

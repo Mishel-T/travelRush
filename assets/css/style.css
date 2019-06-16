@@ -99,3 +99,17 @@ p{
   display:none;
 
 }
+
+#weather-results {
+  overflow:auto;
+  padding: 5px;
+}
+
+#user-city{
+  margin-bottom: 10px;
+}
+
+#user-input {
+  margin-bottom: 20px;
+}
+

@@ -408,8 +408,10 @@ $("#user-input").on("click", function (event) {
   
     //remove text and elements inside weather result div.
     $("#weather-results").empty();
-    //create title for the weather forecast
-    $("#weather-results").append("<p>" + destAirport + ", " + queryState + " 3-Day Weather forecast" + "</p><br>");
+    //create title and image for the weather forecast
+    $("#weather-results").append("<p>" + destAirport + "," + queryState + " Weather On Travel Date" + "</p><br>");
+    //$("#weather-img").attr("src", "./assets/images/tim-gouw-208299-unsplash.jpg");
+    //$("#weather-name").text(destAirport + "," + queryState + " Weather On Travel Date");
     //dynamically create layout of the table.
     createWeatherTable();
     departDate = $("#depart-date").val();
@@ -503,8 +505,10 @@ $("#user-input").on("click", function (event) {
 $("#more-weather").on("click", function(event) {
     //remove text and elements inside weather result div.
     $("#weather-results").empty();
-    //create title for the weather forecast
-    $("#weather-results").append("<p>" + destAirport + ", " + queryState + " 3-Day Weather forecast" + "</p><br>");
+    //create title and image for the weather forecast
+    $("#weather-results").append("<p>" + destAirport + "," + queryState + " 3-Day Weather Forecast" + "</p><br>");
+    //$("#weather-img").attr("src", "./assets/images/tim-gouw-208299-unsplash.jpg");
+    //$("#weather-name").text(destAirport + "," + queryState + " 3-Day Weather Forecast");
     //dynamically create layout of the table.
     createWeatherTable();
     //make ajax call to the weather api and then populate the table.

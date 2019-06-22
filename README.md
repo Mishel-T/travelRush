@@ -9,12 +9,14 @@ This app is designed to assist rushed travelers with unplanned last-minute trips
 
 *Please note that the program uses a Firebase as its data base to store user inputs.* This app uses *OpenWeatherMap API* to display weather forecast, *AirportFinder API* to display list of airports within a location, *Geocoding API* to get the coordinates of a city and *Yelp API* to display information about nearby restaurants, hotels and coffee-shops.
 
+### Deployed App
+https://mishel-t.github.io/travelRush/
+
 ### Contact us about traveRush
 mishelt13@gmail.com
 emma.delzer@gmail.com
 geoffrey.xwin@gmail.com
 maafadina@gmail.com
-
 
 
 ### Contributors 

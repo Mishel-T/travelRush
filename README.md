@@ -22,3 +22,6 @@ Michelle (Team Leader)
 Emma 
 Modupe
 Geo
+
+### Find travelRush here
+https://mishel-t.github.io/travelRush/
